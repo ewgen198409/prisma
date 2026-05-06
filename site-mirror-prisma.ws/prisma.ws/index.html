@@ -1,0 +1,168 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>Prisma - Фильмы и сериалы</title>
+    
+        <meta name="description" content="Окунись в мир фильмов и сериалов на тв, приставках и смартфонах." />
+    
+        <meta property="og:title" content="Prisma - Фильмы и сериалы">
+        <meta property="og:description" content="Окунись в мир фильмов и сериалов на тв, приставках и смартфонах.">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image" content="og.png">
+        
+        <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+        <link rel="manifest" href="icons/site.webmanifest" crossorigin="use-credentials">
+        <link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="icons/favicon.ico">
+        <meta name="msapplication-TileColor" content="#1d1f20">
+        <meta name="msapplication-config" content="icons/browserconfig.xml">
+        <meta name="theme-color" content="#1d1f20">
+    
+        <meta name="referrer" content="never">
+
+    <link rel="stylesheet" href="./vender/scrollbar/jquery.scrollbar.css">
+    <link rel="stylesheet" href="./vender/keypad/style.css">
+
+    <link rel="stylesheet" href="css/app.css?v=2.84">
+
+</head>
+<body>
+    <script>
+        window.youtube_lazy_load = true
+    </script>
+
+    <div class="welcome"></div>
+
+    <div id="app">
+
+    </div>
+
+    <div class="no-network hide">
+        <div class="no-network__title">Ошибка</div>
+        <div class="no-network__desc">Не удалось загрузить файл: <span class="no-network__file"></span></div>
+    </div>
+    
+    <script src="./webos/webOSTV.js"></script>
+    <script src="./vender/jquery/jquery.js"></script>
+    <script src="./vender/notify/notify.js"></script>
+    <script src="./vender/scrollbar/jquery.scrollbar.js"></script>
+    <script src="./vender/navigator/navigator.js"></script>
+    <script src="./vender/keypad/keypad.js"></script>
+
+    <script>
+        var prisma_url     = '';
+        var cache_version = Math.floor((new Date()).getTime() / 9e5); // Новое значение каждые 15 минут
+            
+        function urlJoin(base, add) {
+            if (base.charAt(base.length - 1) !== '/') {
+                base += '/'
+            }
+
+            return base + add
+        }
+
+        function putScript(scripts, onload, onerror){
+            var add = function(src){
+                console.log('Loader', 'try-load-script', src)
+
+                var trys = 0
+
+                var sreateScript = function(){
+                    var script = document.createElement('script')
+
+                    script.type = 'text/javascript'
+
+                    script.onload = script.onreadystatechange = function(e) {
+                        console.log('Loader', 'Script loaded', e)
+
+                        if (!!onload) onload()
+                    };
+
+                    script.onerror = function(){
+                        trys++
+
+                        console.log('Loader', 'error-load-script', src)
+
+                        if(trys < 3){
+                            sreateScript()
+                        } else if (!!onerror) {
+                            onerror()
+                        } else{
+                            $('.no-network').removeClass('hide')
+
+                            $('.no-network__file').text(window.location.href + '/' + src)
+                        }
+                    }
+
+                    script.src = src
+
+                    document.getElementsByTagName('body')[0].appendChild(script)
+                }
+
+                sreateScript()
+            }
+
+            add(scripts)
+        }
+
+        function loadCurrentPrisma() {
+            putScript('app.min.js?v=' + cache_version, function () {})
+        }
+
+        function loadLocalPrisma(){
+            if(prisma_url !== '') window.local_prisma = true
+
+            loadCurrentPrisma()
+        }
+
+        if (typeof AndroidJS !== "undefined"
+            && !!AndroidJS.getPrismaURL
+            && /^https?:\/\//i.test(AndroidJS.getPrismaURL())
+            && !/^https?:\/\//i.test(location.href)
+        ) {
+            prisma_url = urlJoin(AndroidJS.getPrismaURL(),'')
+        }
+
+        if (prisma_url !== '') {
+            putScript(
+                urlJoin(prisma_url, 'prismainit.js?v=' + cache_version),
+                false,
+                function(){}
+            )
+
+            putScript(
+                urlJoin(prisma_url, 'app.min.js?v=' + cache_version),
+                function () {
+                    var css = urlJoin(prisma_url, 'css/app.css?v=' + cache_version)
+
+                    $('head').append('<link rel="stylesheet" href="' + css + '">')
+                },
+                function () {
+                    putScript(
+                        urlJoin(prisma_url, 'prisma-main/app.min.js?v=' + cache_version),
+                        function () {
+                            var css = urlJoin(prisma_url, 'prisma-main/css/app.css?v=' + cache_version)
+
+                            $('head').append('<link rel="stylesheet" href="' + css + '">')
+
+                            putScript(
+                                urlJoin(prisma_url, 'prismainit.js?v=' + cache_version),
+                                false,
+                                function(){}
+                            )
+                        },
+                        loadLocalPrisma
+                    )
+                }
+            )
+        }
+        else{
+            loadCurrentPrisma()
+        }
+    </script>
+</body>
+</html>

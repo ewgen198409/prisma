@@ -1,0 +1,105 @@
+<svg width="100" height="100" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <!-- Весь элемент вращается вправо -->
+    <animateTransform
+      attributeName="transform"
+      type="rotate"
+      from="0 250 250"
+      to="360 250 250"
+      dur="2s"
+      repeatCount="indefinite"
+    />
+
+    <!-- Базовый серо-белый круг -->
+    <path d="M425 250C425 346.65 346.65 425 250 425C153.35 425 75 346.65 75 250C75 153.35 153.35 75 250 75C346.65 75 425 153.35 425 250ZM103.301 250C103.301 331.019 168.981 396.699 250 396.699C331.019 396.699 396.699 331.019 396.699 250C396.699 168.981 331.019 103.301 250 103.301C168.981 103.301 103.301 168.981 103.301 250Z" fill="url(#ringGrayMain)"/>
+    <path d="M425 250C425 346.65 346.65 425 250 425C153.35 425 75 346.65 75 250C75 153.35 153.35 75 250 75C346.65 75 425 153.35 425 250ZM103.301 250C103.301 331.019 168.981 396.699 250 396.699C331.019 396.699 396.699 331.019 396.699 250C396.699 168.981 331.019 103.301 250 103.301C168.981 103.301 103.301 168.981 103.301 250Z" fill="url(#ringGraySoft1)" fill-opacity="0.35"/>
+    <path d="M425 250C425 346.65 346.65 425 250 425C153.35 425 75 346.65 75 250C75 153.35 153.35 75 250 75C346.65 75 425 153.35 425 250ZM103.301 250C103.301 331.019 168.981 396.699 250 396.699C331.019 396.699 396.699 331.019 396.699 250C396.699 168.981 331.019 103.301 250 103.301C168.981 103.301 103.301 168.981 103.301 250Z" fill="url(#ringGraySoft2)" fill-opacity="0.2"/>
+
+    <!-- Цветной слой кольца, который крутится в обратную сторону -->
+    <g opacity="0.95">
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from="0 250 250"
+        to="-720 250 250"
+        dur="2s"
+        repeatCount="indefinite"
+      />
+
+      <path d="M425 250C425 346.65 346.65 425 250 425C153.35 425 75 346.65 75 250C75 153.35 153.35 75 250 75C346.65 75 425 153.35 425 250ZM103.301 250C103.301 331.019 168.981 396.699 250 396.699C331.019 396.699 396.699 331.019 396.699 250C396.699 168.981 331.019 103.301 250 103.301C168.981 103.301 103.301 168.981 103.301 250Z" fill="url(#ringColorMain)" fill-opacity="0.75"/>
+      <path d="M425 250C425 346.65 346.65 425 250 425C153.35 425 75 346.65 75 250C75 153.35 153.35 75 250 75C346.65 75 425 153.35 425 250ZM103.301 250C103.301 331.019 168.981 396.699 250 396.699C331.019 396.699 396.699 331.019 396.699 250C396.699 168.981 331.019 103.301 250 103.301C168.981 103.301 103.301 168.981 103.301 250Z" fill="url(#ringColorGlow)" fill-opacity="0.35"/>
+    </g>
+
+    <!-- Внутренние фигуры серо-белые -->
+    <path d="M274.5 216.75C295.75 284.75 356.75 272.25 352 302.5C343.5 338 257.75 294.25 232.75 238.5C221.5 207.25 215.25 129.25 247 133.75C280.25 141.25 255.5 167.75 274.5 216.75Z" fill="url(#paint12_gray)"/>
+    <path d="M274.5 216.75C295.75 284.75 356.75 272.25 352 302.5C343.5 338 257.75 294.25 232.75 238.5C221.5 207.25 215.25 129.25 247 133.75C280.25 141.25 255.5 167.75 274.5 216.75Z" fill="url(#paint13_gray)" fill-opacity="0.25"/>
+    <path d="M274.5 216.75C295.75 284.75 356.75 272.25 352 302.5C343.5 338 257.75 294.25 232.75 238.5C221.5 207.25 215.25 129.25 247 133.75C280.25 141.25 255.5 167.75 274.5 216.75Z" fill="url(#paint14_gray)" fill-opacity="0.2"/>
+
+    <path d="M181.5 254.338C201.5 334.25 270.5 330.75 262.25 358.25C262.25 378.75 163 366 139.25 274C131.5 226.25 147 181 194.75 150.25C171 211.5 175.597 230.75 181.5 254.338Z" fill="url(#paint15_gray)"/>
+    <path d="M181.5 254.338C201.5 334.25 270.5 330.75 262.25 358.25C262.25 378.75 163 366 139.25 274C131.5 226.25 147 181 194.75 150.25C171 211.5 175.597 230.75 181.5 254.338Z" fill="url(#paint16_gray)" fill-opacity="0.2"/>
+  </g>
+
+  <defs>
+    <!-- Серый круг -->
+    <linearGradient id="ringGrayMain" x1="232.75" y1="75" x2="250" y2="425" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6F6F6"/>
+      <stop offset="0.5" stop-color="#CFCFCF"/>
+      <stop offset="1" stop-color="#8F8F8F"/>
+    </linearGradient>
+
+    <linearGradient id="ringGraySoft1" x1="250" y1="75" x2="382.5" y2="346.5" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#B8B8B8"/>
+    </linearGradient>
+
+    <linearGradient id="ringGraySoft2" x1="75" y1="219.5" x2="425" y2="240.25" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EAEAEA"/>
+      <stop offset="1" stop-color="#9B9B9B"/>
+    </linearGradient>
+
+    <!-- Цветной градиент для кольца -->
+    <linearGradient id="ringColorMain" x1="250" y1="75" x2="425" y2="250" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0067B7" stop-opacity="0"/>
+      <stop offset="0.2" stop-color="#00A7A9" stop-opacity="0.2"/>
+      <stop offset="0.35" stop-color="#00B68C" stop-opacity="0.9"/>
+      <stop offset="0.5" stop-color="#00EF97" stop-opacity="1"/>
+      <stop offset="0.65" stop-color="#00ABE5" stop-opacity="0.9"/>
+      <stop offset="0.8" stop-color="#008CFC" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#0067B7" stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="ringColorGlow" x1="103.301" y1="250" x2="396.699" y2="250" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00AEE6" stop-opacity="0"/>
+      <stop offset="0.35" stop-color="#00F28B" stop-opacity="0.2"/>
+      <stop offset="0.5" stop-color="#00CBF3" stop-opacity="0.55"/>
+      <stop offset="0.65" stop-color="#78BAEA" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#00AEE6" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Серо-белые внутренние фигуры -->
+    <linearGradient id="paint12_gray" x1="287.935" y1="133.563" x2="287.935" y2="315.317" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8F8F8"/>
+      <stop offset="1" stop-color="#A0A0A0"/>
+    </linearGradient>
+
+    <linearGradient id="paint13_gray" x1="247" y1="133.5" x2="352.5" y2="300.5" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#C3C3C3"/>
+    </linearGradient>
+
+    <linearGradient id="paint14_gray" x1="246.25" y1="133.5" x2="330.5" y2="315.5" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EBEBEB"/>
+      <stop offset="1" stop-color="#949494"/>
+    </linearGradient>
+
+    <linearGradient id="paint15_gray" x1="200.142" y1="150.25" x2="200.142" y2="366.689" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#B0B0B0"/>
+    </linearGradient>
+
+    <linearGradient id="paint16_gray" x1="200.142" y1="150.25" x2="200.142" y2="366.689" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EAEAEA"/>
+      <stop offset="1" stop-color="#8A8A8A"/>
+    </linearGradient>
+  </defs>
+</svg>
